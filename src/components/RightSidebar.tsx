@@ -63,12 +63,6 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
             ) : (
                 <div className="flex flex-col flex-grow w-full overflow-y-auto">
                     <div className="flex items-center justify-between">
-                        <button 
-                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                                className="w-full text-left p-2 rounded text-white bg-primary hover:bg-primary/80 transition-colors"
-                            >
-                                {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-                            </button>
                         <h2 className="text-xl font-semibold text-sidebar-foreground border-b border-background/20 pb-2 mb-4">Trip Assets</h2>
                         <button 
                             className="text-sidebar-foreground hover:text-primary transition-colors"
