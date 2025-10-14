@@ -6,8 +6,6 @@ import { DUMMY_NOTES } from '../data';
 interface RightSidebarProps {
     isCollapsed: boolean;
     onToggleCollapse: () => void;
-    isMobileOpen: boolean;
-    onToggleMobile: () => void;
 }
 
 const NoteCard: React.FC<typeof DUMMY_NOTES[0]> = ({ user, isAgent, timestamp, content }) => (
@@ -32,24 +30,16 @@ const NoteCard: React.FC<typeof DUMMY_NOTES[0]> = ({ user, isAgent, timestamp, c
     </div>
 );
 
-const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollapse, isMobileOpen, onToggleMobile }) => {
+const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollapse }) => {
     // Dynamic width class based on desktop collapse state
     const widthClass = isCollapsed ? 'w-sidebar-w-collapsed p-2' : 'w-right-sidebar-w p-5';
     
-    // Mobile visibility classes
-    const mobileClasses = isMobileOpen ? 'translate-x-0 z-50' : 'translate-x-full z-50';
-
     return (
         <aside 
             className={`bg-bg-light flex-shrink-0 flex relative transition-all duration-300 shadow-xl 
-                ${widthClass} 
-                lg:translate-x-0 
-                fixed inset-y-0 right-0 h-full ${mobileClasses}`} // Fixed position on mobile
+                ${widthClass}`}
         >
-            {/* Mobile Close Button */}
-            <button className="lg:hidden absolute top-3 left-3 text-secondary-dark text-2xl z-50" onClick={onToggleMobile}>
-                &times;
-            </button>
+ 
             
             <div 
                 className={`flex flex-col flex-grow w-full overflow-y-auto transition-opacity duration-200 ${
@@ -90,7 +80,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
 
             {/* Desktop Collapse Button - Fixed to viewport boundary */}
             <button 
-                className="hidden lg:flex fixed top-1/2 -translate-y-1/2 w-5 h-10 bg-white text-secondary-dark shadow-lg border border-gray-300 z-50 items-center justify-center transition-all duration-300 ease-in-out"
+                className="hidden lg:flex absolute top-1/2 -translate-y-1/2 w-5 h-10 bg-white text-secondary-dark shadow-lg border border-gray-300 z-50 items-center justify-center transition-all duration-300 ease-in-out"
                 style={{ 
                     right: isCollapsed ? 'var(--right-sidebar-w-collapsed)' : 'var(--right-sidebar-w)', 
                     borderRadius: '5px 0 0 5px',

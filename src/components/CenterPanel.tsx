@@ -68,7 +68,7 @@ const ChatHistory = () => (
 
 type View = 'itinerary' | 'map' | 'chat';
 
-const CenterPanel: React.FC<{ onToggleLeftMobile: () => void; onToggleRightMobile: () => void }> = ({ onToggleLeftMobile, onToggleRightMobile }) => {
+const CenterPanel: React.FC = () => {
     const [currentView, setCurrentView] = useState<View>('itinerary');
 
     const renderContent = () => {
@@ -88,8 +88,6 @@ const CenterPanel: React.FC<{ onToggleLeftMobile: () => void; onToggleRightMobil
             
             {/* Header */}
             <header className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
-                <button className="lg:hidden text-secondary-dark text-xl" onClick={onToggleLeftMobile}>&#x2261;</button> 
-                
                 <div className='flex-grow mx-4 text-center lg:text-left'>
                     <h1 className="text-2xl font-bold">Scotland: Highlands Adventure</h1>
                     <span className="text-sm text-gray-500 mr-4">1. Highlands Route (Active)</span>
@@ -110,8 +108,6 @@ const CenterPanel: React.FC<{ onToggleLeftMobile: () => void; onToggleRightMobil
                         </button>
                     ))}
                 </div>
-
-                <button className="lg:hidden text-secondary-dark text-xl ml-4" onClick={onToggleRightMobile}>&#x2139;</button>
             </header>
             
             {/* Content Wrapper */}

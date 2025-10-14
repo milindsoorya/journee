@@ -7,8 +7,6 @@ import type { Trip } from '../data';
 interface LeftSidebarProps {
     isCollapsed: boolean;
     onToggleCollapse: () => void;
-    isMobileOpen: boolean;
-    onToggleMobile: () => void;
 }
 
 const UserMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => (
@@ -38,26 +36,19 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => (
     </div>
 );
 
-const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse, isMobileOpen, onToggleMobile }) => {
+const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // Dynamic width class based on desktop collapse state (using CSS variables for transition)
     const widthClass = isCollapsed ? 'w-[var(--sidebar-w-collapsed)] p-2' : 'w-[var(--sidebar-w)] p-5';
     
-    // Mobile visibility classes: hidden by default, slides in when open
-    const mobileClasses = isMobileOpen ? 'translate-x-0 z-50' : '-translate-x-full z-50';
 
     return (
         <aside 
             className={`bg-secondary-dark text-white flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-xl 
-                ${widthClass} 
-                lg:translate-x-0 
-                fixed inset-y-0 h-full ${mobileClasses}`} /* Fixed position on mobile screens */
+                ${widthClass}`}
         >
-            {/* Mobile Close Button (Visible only on small screens) */}
-            <button className="lg:hidden absolute top-3 right-3 text-white text-2xl z-50" onClick={onToggleMobile}>
-                &times;
-            </button>
+ 
             
             <h2 className={`text-xl font-bold mb-8 transition-opacity ${isCollapsed ? 'opacity-0 hidden' : 'opacity-100'}`}>JOURNÉE</h2>
             
@@ -106,7 +97,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
 
             {/* Desktop Collapse Button */}
             <button 
-                className="hidden lg:flex fixed top-1/2 -translate-y-1/2 w-5 h-10 bg-white text-secondary-dark shadow-lg border border-gray-300 z-50 items-center justify-center transition-all duration-300 ease-in-out"
+                className="hidden lg:flex absolute top-1/2 -translate-y-1/2 w-5 h-10 bg-white text-secondary-dark shadow-lg border border-gray-300 z-50 items-center justify-center transition-all duration-300 ease-in-out"
                 style={{ 
                     left: isCollapsed ? 'var(--sidebar-w-collapsed)' : 'var(--sidebar-w)', 
                     borderRadius: '0 5px 5px 0',
