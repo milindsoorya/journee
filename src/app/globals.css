@@ -1,0 +1,27 @@
+/* CORRECTED STYLING METHOD: Uses @import and CSS variables */
+@import "tailwindcss";
+
+/* Ensure body and html tags have full height for the layout to work */
+html, body {
+  height: 100%;
+}
+
+:root {
+  /* Spacing Variables (Used in components and config) */
+  --sidebar-w: 250px;
+  --sidebar-w-collapsed: 50px;
+  --right-sidebar-w: 300px;
+  --right-sidebar-w-collapsed: 50px;
+
+  /* Custom Colors defined as CSS Variables (Used in custom classes) */
+  --accent-teal: #1abc9c;
+  --draft-gray: #bdc3c7;
+}
+
+/* Custom utility classes referencing the CSS Variables */
+.dot-final {
+  background-color: var(--accent-teal);
+}
+.dot-draft {
+  background-color: var(--draft-gray);
+}
