@@ -36,60 +36,64 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
     
     return (
         <aside 
-            className={`bg-secondary-dark text-white flex-shrink-0 flex relative transition-all duration-300 shadow-xl 
+            className={`bg-secondary-dark text-white flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-xl 
                 ${widthClass}`}
         >
- 
-            
-            <div 
-                className={`flex flex-col flex-grow w-full overflow-y-auto transition-opacity duration-200 ${
-                    isCollapsed ? 'opacity-0 hidden' : 'opacity-100'
-                }`}
-            >
-                <h2 className="text-xl font-semibold text-white border-b border-gray-300 pb-2 mb-4">Trip Assets</h2>
-                
-                {/* Asset Dropdowns */}
-                <details className="mb-4" open>
-                    <summary className="font-semibold text-sm cursor-pointer p-2 border-b border-gray-200 hover:text-primary-blue list-none text-white">✅ Checklist (3/5)</summary>
-                    <p className="mt-2 text-sm space-x-2">
-                        <a href="#" className="text-primary-blue hover:underline">Apple Notes</a> | 
-                        <a href="#" className="text-primary-blue hover:underline">Notion</a>
-                    </p>
-                </details>
-                
-                {/* Export Section */}
-                <div className="border-t border-gray-300 pt-4 mt-4 flex-shrink-0">
-                    <h3 className="font-bold text-white mb-3">📤 Export & Share</h3>
-                    <button className="w-full text-left p-2 rounded text-white bg-warning-orange hover:bg-yellow-600 transition-colors mb-2">⬇️ Download Complete Trip JSON</button>
-                    <button className="w-full text-left p-2 rounded text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 transition-colors mb-2">🔗 Google Maps Route Link</button>
-                    <button className="w-full text-left p-2 rounded text-white bg-accent-teal hover:bg-teal-600 transition-colors">🌐 Sharable Website Link</button>
+            {isCollapsed ? (
+                <div>
+                    <button 
+                        className="text-white hover:text-primary-blue transition-colors"
+                        onClick={onToggleCollapse}
+                        aria-label="Toggle sidebar"
+                    >
+                        &#x25c0;
+                    </button>
+                    <div className="[writing-mode:vertical-lr] text-white text-lg font-semibold transform rotate-180 mx-auto mt-4">
+                        Trip Assets
+                    </div>
                 </div>
+            ) : (
+                <div className="flex flex-col flex-grow w-full overflow-y-auto">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-xl font-semibold text-white border-b border-gray-300 pb-2 mb-4">Trip Assets</h2>
+                        <button 
+                            className="text-white hover:text-primary-blue transition-colors"
+                            onClick={onToggleCollapse}
+                            aria-label="Toggle sidebar"
+                        >
+                            &#x25b6;
+                        </button>
+                    </div>
+                    {/* Asset Dropdowns */}
+                    <details className="mb-4" open>
+                        <summary className="font-semibold text-sm cursor-pointer p-2 border-b border-gray-200 hover:text-primary-blue list-none text-white">✅ Checklist (3/5)</summary>
+                        <p className="mt-2 text-sm space-x-2">
+                            <a href="#" className="text-primary-blue hover:underline">Apple Notes</a> | 
+                            <a href="#" className="text-primary-blue hover:underline">Notion</a>
+                        </p>
+                    </details>
+                    
+                    {/* Export Section */}
+                    <div className="border-t border-gray-300 pt-4 mt-4 flex-shrink-0">
+                        <h3 className="font-bold text-white mb-3">📤 Export & Share</h3>
+                        <button className="w-full text-left p-2 rounded text-white bg-warning-orange hover:bg-yellow-600 transition-colors mb-2">⬇️ Download Complete Trip JSON</button>
+                        <button className="w-full text-left p-2 rounded text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 transition-colors mb-2">🔗 Google Maps Route Link</button>
+                        <button className="w-full text-left p-2 rounded text-white bg-accent-teal hover:bg-teal-600 transition-colors">🌐 Sharable Website Link</button>
+                    </div>
 
-                {/* Notes Section (Pushed to bottom using flex utilities) */}
-                <div className="mt-auto pt-4 border-t border-gray-300 flex-shrink-0">
-                    <h3 className="font-bold text-white mb-3">📝 Trip Notes & Findings</h3>
-                    {DUMMY_NOTES.map((note, index) => (
-                        <NoteCard key={index} {...note} />
-                    ))}
-                    <textarea 
-                        placeholder="Add a new note or finding..." 
-                        className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:ring-primary-blue focus:border-primary-blue"
-                    />
+                    {/* Notes Section (Pushed to bottom using flex utilities) */}
+                    <div className="mt-auto pt-4 border-t border-gray-300 flex-shrink-0">
+                        <h3 className="font-bold text-white mb-3">📝 Trip Notes & Findings</h3>
+                        {DUMMY_NOTES.map((note, index) => (
+                            <NoteCard key={index} {...note} />
+                        ))}
+                        <textarea 
+                            placeholder="Add a new note or finding..." 
+                            className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:ring-primary-blue focus:border-primary-blue"
+                        />
+                    </div>
                 </div>
-            </div>
-
-            {/* Desktop Collapse Button - Fixed to viewport boundary */}
-            <button 
-                className="hidden lg:flex absolute top-1/2 -translate-y-1/2 w-5 h-10 bg-white text-secondary-dark shadow-lg border border-gray-300 z-50 items-center justify-center transition-all duration-300 ease-in-out"
-                style={{ 
-                    right: isCollapsed ? 'var(--right-sidebar-w-collapsed)' : 'var(--right-sidebar-w)', 
-                    borderRadius: '5px 0 0 5px',
-                    transform: `translateY(-50%) ${isCollapsed ? 'rotate(180deg)' : 'rotate(0deg)'}`
-                }}
-                onClick={onToggleCollapse}
-            >
-                &#x25b6;
-            </button>
+            )}
         </aside>
     );
 };
