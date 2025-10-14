@@ -12,17 +12,6 @@ const DefaultView: React.FC<DefaultViewProps> = ({
 }) => {
   return (
     <div className="flex flex-col flex-grow w-full overflow-y-auto">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold mb-8">JOURNÉE</h2>
-        <button
-          className="text-sidebar-foreground hover:text-primary transition-colors"
-          onClick={onToggleCollapse}
-          aria-label="Toggle sidebar"
-        >
-          &#x25c0;
-        </button>
-      </div>
-
       <button className="bg-primary text-primary-foreground p-2 rounded mb-5 flex-shrink-0 whitespace-nowrap">
         + New Trip
       </button>

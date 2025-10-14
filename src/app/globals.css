@@ -19,8 +19,8 @@ html, body {
   --sidebar: #0f172a;
   --sidebar-foreground: #f1f5f9;
   
-  --sidebar-w: 250px;
-  --sidebar-w-collapsed: 50px;
+  --sidebar-w: 320px;
+  --sidebar-w-collapsed: 0px; 
   --right-sidebar-w: 300px;
   --right-sidebar-w-collapsed: 50px;
 }
