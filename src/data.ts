@@ -1,9 +1,17 @@
+export interface ChatMessage {
+  id: string;
+  author: User;
+  message: string;
+  timestamp: Date;
+}
+
 export interface User {
     id: string;
     name: string;
     email: string;
     avatarUrl?: string;
 }
+
 
 export interface Note {
     id: string;
@@ -63,6 +71,46 @@ export const DUMMY_TRIPS: Trip[] = [
         owner: mockUser,
         versions: [],
     },
+];
+
+export const DUMMY_CHAT_MESSAGES: ChatMessage[] = [
+  {
+    id: "chat-1",
+    author: mockAgent,
+    message:
+      "Hello! I've generated your initial **Highlands Route**. Take a look at Day 1.",
+    timestamp: new Date("2023-10-14T10:00:00Z"),
+  },
+  {
+    id: "chat-2",
+    author: mockUser,
+    message: "The itinerary looks good, but can we swap the Stirling Castle stop?",
+    timestamp: new Date("2023-10-14T10:05:00Z"),
+  },
+  {
+    id: "chat-3",
+    author: mockAgent,
+    message: "I've updated Day 1 to include a stop at the **Falkirk Wheel**.",
+    timestamp: new Date("2023-10-14T10:10:00Z"),
+  },
+  {
+    id: "chat-4",
+    author: mockUser,
+    message: "Bridge is fine, thanks!",
+    timestamp: new Date("2023-10-14T10:15:00Z"),
+  },
+  {
+    id: "chat-5",
+    author: mockAgent,
+    message: "The new route includes a ferry option for the Isle of Skye on Day 3. Let me know if you prefer the bridge.",
+    timestamp: new Date("2023-10-14T10:20:00Z"),
+  },
+  {
+    id: "chat-6",
+    author: mockUser,
+    message: "Looks good!",
+    timestamp: new Date("2023-10-14T10:25:00Z"),
+  },
 ];
 
 export const DUMMY_NOTES: Note[] = [
