@@ -48,15 +48,15 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
                 ${isCollapsed ? 'w-[var(--sidebar-w-collapsed)] p-2' : 'w-[var(--sidebar-w)] p-5'}`}
         >
             {isCollapsed ? (
-                <div>
+                <div className="flex flex-col items-center h-full">
                     <button 
-                        className="text-sidebar-foreground hover:text-primary transition-colors"
+                        className="text-sidebar-foreground hover:text-primary transition-colors mb-4"
                         onClick={onToggleCollapse}
                         aria-label="Toggle sidebar"
                     >
                         &#x25c0;
                     </button>
-                    <div className="[writing-mode:vertical-lr] text-sidebar-foreground text-lg font-semibold transform rotate-180 mx-auto mt-4">
+                    <div className="[writing-mode:vertical-lr] text-sidebar-foreground text-lg font-semibold transform rotate-180 mx-auto">
                         Trip Assets
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
                     
                     {/* Asset Dropdowns */}
                     <details className="mb-4" open>
-                        <summary className="font-semibold text-sm cursor-pointer p-2 border-b border-background/20 hover:text-primary list-none text-sidebar-foreground">📝 Notes</summary>
+                        <summary className="font-semibold text-sm cursor-pointer p-2 border-b border-background/20 hover:text-primary list-none text-sidebar-foreground">✅ Notes</summary>
                         <p className="mt-2 text-sm space-y-2">
                             <a href="#" className="text-primary hover:underline block">Apple Notes</a>
                             <a href="#" className="text-primary hover:underline block">Notion</a>

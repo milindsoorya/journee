@@ -47,15 +47,15 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
                 ${isCollapsed ? 'w-[var(--sidebar-w-collapsed)] p-2' : 'w-[var(--sidebar-w)] p-5'}`}
         >
             {isCollapsed ? (
-                <div>
+                <div className="flex flex-col items-center h-full">
                     <button 
-                        className="text-sidebar-foreground hover:text-primary transition-colors"
+                        className="text-sidebar-foreground hover:text-primary transition-colors mb-4"
                         onClick={onToggleCollapse}
                         aria-label="Toggle sidebar"
                     >
                         &#x25b6;
                     </button>
-                    <div className="[writing-mode:vertical-lr] text-sidebar-foreground text-lg font-semibold transform rotate-180 mx-auto mt-4">
+                    <div className="[writing-mode:vertical-lr] text-sidebar-foreground text-lg font-semibold transform rotate-180 mx-auto">
                         Trips
                     </div>
                 </div>
