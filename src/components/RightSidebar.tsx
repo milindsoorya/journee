@@ -9,7 +9,7 @@ interface RightSidebarProps {
 }
 
 const NoteCard: React.FC<typeof DUMMY_NOTES[0]> = ({ user, isAgent, timestamp, content }) => (
-    <div className="bg-white border border-gray-300 rounded-lg p-3 mb-3 shadow-sm">
+    <div className="bg-gray-700 border border-gray-600 rounded-lg p-3 mb-3 shadow-sm">
         <div className="flex items-center mb-2">
             <span 
                 className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
@@ -18,12 +18,12 @@ const NoteCard: React.FC<typeof DUMMY_NOTES[0]> = ({ user, isAgent, timestamp, c
             >
                 {user[0]}
             </span>
-            <span className="font-bold text-xs ml-2">{user}</span>
-            <span className="text-xs text-gray-500 ml-auto">{timestamp}</span>
+            <span className="font-bold text-xs ml-2 text-white">{user}</span>
+            <span className="text-xs text-gray-400 ml-auto">{timestamp}</span>
         </div>
         <textarea 
             readOnly 
-            className="w-full text-sm resize-none bg-transparent focus:outline-none" 
+            className="w-full text-sm resize-none bg-transparent focus:outline-none text-white" 
             rows={2}
             value={content}
         />
@@ -36,7 +36,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
     
     return (
         <aside 
-            className={`bg-bg-light flex-shrink-0 flex relative transition-all duration-300 shadow-xl 
+            className={`bg-secondary-dark text-white flex-shrink-0 flex relative transition-all duration-300 shadow-xl 
                 ${widthClass}`}
         >
  
@@ -46,11 +46,11 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
                     isCollapsed ? 'opacity-0 hidden' : 'opacity-100'
                 }`}
             >
-                <h2 className="text-xl font-semibold text-secondary-dark border-b border-gray-300 pb-2 mb-4">Trip Assets</h2>
+                <h2 className="text-xl font-semibold text-white border-b border-gray-300 pb-2 mb-4">Trip Assets</h2>
                 
                 {/* Asset Dropdowns */}
                 <details className="mb-4" open>
-                    <summary className="font-semibold text-sm cursor-pointer p-2 border-b border-gray-200 hover:text-primary-blue list-none">✅ Checklist (3/5)</summary>
+                    <summary className="font-semibold text-sm cursor-pointer p-2 border-b border-gray-200 hover:text-primary-blue list-none text-white">✅ Checklist (3/5)</summary>
                     <p className="mt-2 text-sm space-x-2">
                         <a href="#" className="text-primary-blue hover:underline">Apple Notes</a> | 
                         <a href="#" className="text-primary-blue hover:underline">Notion</a>
@@ -59,7 +59,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
                 
                 {/* Export Section */}
                 <div className="border-t border-gray-300 pt-4 mt-4 flex-shrink-0">
-                    <h3 className="font-bold text-secondary-dark mb-3">📤 Export & Share</h3>
+                    <h3 className="font-bold text-white mb-3">📤 Export & Share</h3>
                     <button className="w-full text-left p-2 rounded text-white bg-warning-orange hover:bg-yellow-600 transition-colors mb-2">⬇️ Download Complete Trip JSON</button>
                     <button className="w-full text-left p-2 rounded text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 transition-colors mb-2">🔗 Google Maps Route Link</button>
                     <button className="w-full text-left p-2 rounded text-white bg-accent-teal hover:bg-teal-600 transition-colors">🌐 Sharable Website Link</button>
@@ -67,7 +67,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
 
                 {/* Notes Section (Pushed to bottom using flex utilities) */}
                 <div className="mt-auto pt-4 border-t border-gray-300 flex-shrink-0">
-                    <h3 className="font-bold text-secondary-dark mb-3">📝 Trip Notes & Findings</h3>
+                    <h3 className="font-bold text-white mb-3">📝 Trip Notes & Findings</h3>
                     {DUMMY_NOTES.map((note, index) => (
                         <NoteCard key={index} {...note} />
                     ))}
