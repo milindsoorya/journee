@@ -23,14 +23,14 @@ const CenterPanel: React.FC = () => {
     };
 
     return (
-        <main className="flex flex-col flex-grow bg-white relative overflow-hidden h-full">
+        <main className="flex flex-col flex-grow bg-background relative overflow-hidden h-full">
             
             {/* Header */}
-            <header className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
+            <header className="flex justify-between items-center p-4 border-b border-secondary flex-shrink-0">
                 <div className='flex-grow mx-4 text-center lg:text-left'>
-                    <h1 className="text-2xl font-bold">Scotland: Highlands Adventure</h1>
-                    <span className="text-sm text-gray-500 mr-4">1. Highlands Route (Active)</span>
-                    <button className="text-primary-blue border border-primary-blue text-xs px-3 py-1 rounded-full hover:bg-primary-blue hover:text-white transition-colors">➕ New Version</button>
+                    <h1 className="text-2xl font-bold text-foreground">Scotland: Highlands Adventure</h1>
+                    <span className="text-sm text-secondary mr-4">1. Highlands Route (Active)</span>
+                    <button className="text-primary border border-primary text-xs px-3 py-1 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">➕ New Version</button>
                 </div>
                 
                 {/* View Toggles */}

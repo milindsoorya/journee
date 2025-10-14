@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className="h-screen overflow-hidden antialiased bg-bg-light">{children}</body>
+        <body className="h-screen overflow-hidden antialiased bg-background text-foreground">{children}</body>
       </ThemeProvider>
     </html>
   );

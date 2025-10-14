@@ -16,7 +16,7 @@ const ViewToggle: React.FC<ViewToggleProps> = ({ currentView, setCurrentView }) 
                 key={view} 
                 onClick={() => setCurrentView(view as View)}
                 className={`px-3 py-1 rounded transition-colors text-sm ${
-                    currentView === view ? 'bg-primary-blue text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    currentView === view ? 'bg-primary text-primary-foreground' : 'bg-secondary text-foreground hover:bg-secondary/80'
                 }`}
             >
                 {view === 'itinerary' ? '🗓️ List' : view === 'map' ? '🗺️ Map' : '💬 Chat'}

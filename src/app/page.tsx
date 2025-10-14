@@ -12,20 +12,8 @@ export default function Home() {
   const toggleLeftCollapse = () => setIsLeftCollapsed(prev => !prev);
   const toggleRightCollapse = () => setIsRightCollapsed(prev => !prev);
 
-  const getGridClass = () => {
-    let base = 'grid-cols-[var(--sidebar-w)_1fr_var(--right-sidebar-w)]';
-    if (isLeftCollapsed && isRightCollapsed) {
-      base = 'grid-cols-[var(--sidebar-w-collapsed)_1fr_var(--right-sidebar-w-collapsed)]';
-    } else if (isLeftCollapsed) {
-      base = 'grid-cols-[var(--sidebar-w-collapsed)_1fr_var(--right-sidebar-w)]';
-    } else if (isRightCollapsed) {
-      base = 'grid-cols-[var(--sidebar-w)_1fr_var(--right-sidebar-w-collapsed)]';
-    }
-    return base;
-  };
-
   return (
-    <div className={`h-full grid transition-all duration-300 ease-in-out ${getGridClass()}`}>
+    <div className="h-full flex">
       
       {/* 1. Left Sidebar */}
       <LeftSidebar 
@@ -34,7 +22,9 @@ export default function Home() {
       />
       
       {/* 2. Center Panel (Main Content) */}
-      <CenterPanel />
+      <div className="flex-grow">
+        <CenterPanel />
+      </div>
       
       {/* 3. Right Sidebar */}
       <RightSidebar 
