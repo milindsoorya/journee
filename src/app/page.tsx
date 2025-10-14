@@ -3,117 +3,76 @@ import React, { useState, useEffect } from "react";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RightSidebar";
 import CenterPanel from "../components/CenterPanel";
-import { Menu, X, PanelLeft, PanelRight } from "lucide-react";
-
-const useWindowWidth = () => {
-  const [windowWidth, setWindowWidth] = useState(0);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setWindowWidth(window.innerWidth);
-      const handleResize = () => setWindowWidth(window.innerWidth);
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }
-  }, []);
-
-  return windowWidth;
-};
+import { Menu, X, PanelRight } from "lucide-react";
+import { useWindowWidth } from "../hooks/useWindowWidth";
 
 export default function Home() {
   const windowWidth = useWindowWidth();
   const isDesktop = windowWidth >= 1024;
-  
-  const [isLeftCollapsed, setIsLeftCollapsed] = useState(!isDesktop);
-  const [isRightCollapsed, setIsRightCollapsed] = useState(!isDesktop);
-  const [showLeftMobile, setShowLeftMobile] = useState(false);
-  const [showRightMobile, setShowRightMobile] = useState(false);
 
-  // Update state on resize
+  const [isLeftSidebarOpen, setLeftSidebarOpen] = useState(isDesktop);
+  const [isRightSidebarOpen, setRightSidebarOpen] = useState(isDesktop);
+
   useEffect(() => {
-    setIsLeftCollapsed(!isDesktop);
-    setIsRightCollapsed(!isDesktop);
     if (isDesktop) {
-      setShowLeftMobile(false);
-      setShowRightMobile(false);
+      setLeftSidebarOpen(true);
+      setRightSidebarOpen(true);
+    } else {
+      setLeftSidebarOpen(false);
+      setRightSidebarOpen(false);
     }
   }, [isDesktop]);
 
-  const toggleLeftSidebar = () => {
-    if (isDesktop) {
-      setIsLeftCollapsed(prev => !prev);
-    } else {
-      setShowLeftMobile(prev => !prev);
-    }
-  };
-
-  const toggleRightSidebar = () => {
-    if (isDesktop) {
-      setIsRightCollapsed(prev => !prev);
-    } else {
-      setShowRightMobile(prev => !prev);
-    }
-  };
-
+  const toggleLeftSidebar = () => setLeftSidebarOpen(prev => !prev);
+  const toggleRightSidebar = () => setRightSidebarOpen(prev => !prev);
   const closeMobileSidebars = () => {
-    setShowLeftMobile(false);
-    setShowRightMobile(false);
+    if (!isDesktop) {
+      setLeftSidebarOpen(false);
+      setRightSidebarOpen(false);
+    }
   };
 
   return (
     <div className="h-screen flex relative">
-      {/* Mobile Toggle Buttons */}
       {!isDesktop && (
         <>
           <button
-            className="fixed top-4 left-4 z-50 p-3 bg-background/95 backdrop-blur-sm rounded-xl border shadow-lg hover:bg-accent/10 transition-all"
+            className="fixed top-4 left-4 z-50 p-3 bg-secondary backdrop-blur-sm rounded-xl border border-subtle shadow-lg hover:bg-secondary/80 transition-all"
             onClick={toggleLeftSidebar}
           >
-            {showLeftMobile ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            {isLeftSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
           <button
-            className="fixed top-4 right-4 z-50 p-3 bg-background/95 backdrop-blur-sm rounded-xl border shadow-lg hover:bg-accent/10 transition-all"
+            className="fixed top-4 right-4 z-50 p-3 bg-secondary backdrop-blur-sm rounded-xl border border-subtle shadow-lg hover:bg-secondary/80 transition-all"
             onClick={toggleRightSidebar}
           >
-            {showRightMobile ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <PanelRight className="w-5 h-5" />
-            )}
+            {isRightSidebarOpen ? <X className="w-5 h-5" /> : <PanelRight className="w-5 h-5" />}
           </button>
         </>
       )}
 
-      {/* Left Sidebar */}
       <LeftSidebar 
-        isCollapsed={isDesktop ? isLeftCollapsed : !showLeftMobile}
+        isCollapsed={!isLeftSidebarOpen}
         onToggleCollapse={toggleLeftSidebar}
-        isMobileOpen={showLeftMobile}
+        isMobileOpen={isLeftSidebarOpen && !isDesktop}
         onMobileClose={closeMobileSidebars}
       />
       
-      {/* Center Panel */}
       <div className="flex-1 relative z-10 min-w-0">
         <CenterPanel />
       </div>
       
-      {/* Right Sidebar */}
       <RightSidebar 
-        isCollapsed={isDesktop ? isRightCollapsed : !showRightMobile}
+        isCollapsed={!isRightSidebarOpen}
         onToggleCollapse={toggleRightSidebar}
-        isMobileOpen={showRightMobile}
+        isMobileOpen={isRightSidebarOpen && !isDesktop}
         onMobileClose={closeMobileSidebars}
       />
 
-      {/* Mobile Overlay */}
-      {(showLeftMobile || showRightMobile) && !isDesktop && (
+      {(isLeftSidebarOpen || isRightSidebarOpen) && !isDesktop && (
         <div 
-          className="fixed inset-0 bg-black/60 z-40"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
           onClick={closeMobileSidebars}
         />
       )}

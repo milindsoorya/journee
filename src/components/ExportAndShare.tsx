@@ -1,21 +1,29 @@
 "use client";
 import React from "react";
+import { Download, Link, Globe } from "lucide-react";
+
 const ExportAndShare = () => {
   return (
-    <div className="border-t border-background/20 pt-4 mt-4 flex-shrink-0">
-      <h3 className="font-bold text-sidebar-foreground mb-3">
-        📤 Export & Share
+    <div className="border-t border-subtle pt-4 mt-4 flex-shrink-0">
+      <h3 className="font-semibold text-secondary-foreground mb-3">
+        Export & Share
       </h3>
-      <button className="w-full text-left p-2 rounded text-white bg-warning hover:bg-opacity-80 transition-colors mb-2">
-        ⬇️ Download Complete Trip JSON
-      </button>
-      <button className="w-full text-left p-2 rounded text-foreground bg-background border border-secondary hover:bg-opacity-80 transition-colors mb-2">
-        🔗 Google Maps Route Link
-      </button>
-      <button className="w-full text-left p-2 rounded text-white bg-accent hover:bg-opacity-80 transition-colors">
-        🌐 Sharable Website Link
-      </button>
+      <div className="flex items-center justify-around gap-2">
+        <button className="flex-1 flex flex-col items-center gap-2 p-3 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+          <Download className="w-5 h-5 text-muted" />
+          <span className="text-xs text-muted">JSON</span>
+        </button>
+        <button className="flex-1 flex flex-col items-center gap-2 p-3 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+          <Link className="w-5 h-5 text-muted" />
+          <span className="text-xs text-muted">Maps</span>
+        </button>
+        <button className="flex-1 flex flex-col items-center gap-2 p-3 rounded-lg bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors">
+          <Globe className="w-5 h-5 text-muted" />
+          <span className="text-xs text-muted">Web</span>
+        </button>
+      </div>
     </div>
   );
 };
+
 export default ExportAndShare;

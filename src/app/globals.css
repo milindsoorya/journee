@@ -2,38 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Ensure body and html tags have full height for the layout to work */
-html, body {
-  height: 100%;
+@layer base {
+  :root {
+    /* Light Mode Palette */
+    --background: 0 0% 98%;
+    --foreground: 224 71.4% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+    --primary: 220 90% 50%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 0 0% 95%;
+    --secondary-foreground: 224 71.4% 4.1%;
+    --accent: 340 90% 55%;
+    --accent-foreground: 210 20% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+    --subtle: 220 14.3% 95.9%;
+    --muted: 220 8.9% 46.1%;
+
+    --sidebar-w: 350px;
+    --sidebar-w-collapsed: 0px;
+    --right-sidebar-w: 340px;
+    --right-sidebar-w-collapsed: 50px;
+  }
+ 
+  .dark {
+    /* Dark Mode Palette */
+    --background: 215 27.9% 16.9%;
+    --foreground: 210 20% 98%;
+    --card: 215 27.9% 16.9%;
+    --card-foreground: 210 20% 98%;
+    --primary: 210 20% 98%;
+    --primary-foreground: 224 71.4% 4.1%;
+    --secondary: 224 71.4% 4.1%;
+    --secondary-foreground: 210 20% 98%;
+    --accent: 340 90% 55%;
+    --accent-foreground: 210 20% 98%;
+    --warning: 48 96% 89%;
+    --warning-foreground: 38 92% 50%;
+    --subtle: 215 27.9% 16.9%;
+    --muted: 217.9 10.6% 64.9%;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-:root {
-  --background: #f8fafc; /* Softer white */
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --primary: #2563eb;
-  --primary-foreground: #ffffff;
-  --secondary: #94a3b8; /* Lighter secondary text */
-  --accent: #059669;
-  --warning: #f59e0b;
-  --sidebar: #0f172a;
-  --sidebar-foreground: #f1f5f9;
-  
-  --sidebar-w: 320px;
-  --sidebar-w-collapsed: 0px; 
-  --right-sidebar-w: 300px;
-  --right-sidebar-w-collapsed: 50px;
-}
-
-.dark {
-  --background: #0f172a; /* Softer black */
-  --foreground: #f8fafc;
-  --card: #1e293b;
-  --primary: #3b82f6; /* Brighter blue for dark mode */
-  --primary-foreground: #ffffff;
-  --secondary: #94a3b8; /* Lighter secondary text */
-  --accent: #10b981;
-  --warning: #f59e0b;
-  --sidebar: #0f172a;
-  --sidebar-foreground: #f1f5f9;
+@layer components {
+  .h1 {
+    @apply text-lg sm:text-xl font-semibold;
+  }
+  .h2 {
+    @apply text-lg font-semibold;
+  }
+  .h3 {
+    @apply text-xs font-semibold uppercase tracking-wider;
+  }
+  .p {
+    @apply text-sm;
+  }
+  .small {
+    @apply text-xs;
+  }
 }
