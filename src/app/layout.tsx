@@ -15,7 +15,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThemeProvider>
-        <body className="h-screen overflow-hidden antialiased bg-background text-foreground">{children}</body>
+        <body className="h-screen overflow-hidden antialiased bg-background text-foreground">
+          {children}
+          <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+        </body>
       </ThemeProvider>
     </html>
   );

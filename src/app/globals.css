@@ -7,15 +7,15 @@ html, body {
 }
 
 :root {
-  --background: #f4f7f9;
-  --foreground: #2c3e50;
+  --background: #f8f9fa;
+  --foreground: #212529;
   --card: #ffffff;
-  --primary: #3498db;
+  --primary: #007bff;
   --primary-foreground: #ffffff;
-  --secondary: #bdc3c7;
-  --accent: #1abc9c;
-  --warning: #f39c12;
-  --sidebar: #2c3e50;
+  --secondary: #6c757d;
+  --accent: #17a2b8;
+  --warning: #ffc107;
+  --sidebar: #343a40;
   --sidebar-foreground: #ffffff;
   
   --sidebar-w: 250px;
@@ -25,14 +25,14 @@ html, body {
 }
 
 .dark {
-  --background: #2c3e50;
-  --foreground: #f4f7f9;
-  --card: #34495e;
-  --primary: #2980b9;
+  --background: #121212;
+  --foreground: #e9ecef;
+  --card: #1e1e1e;
+  --primary: #0d6efd;
   --primary-foreground: #ffffff;
-  --secondary: #95a5a6;
-  --accent: #16a085;
-  --warning: #d35400;
-  --sidebar: #212f3d;
+  --secondary: #adb5bd;
+  --accent: #0dcaf0;
+  --warning: #fd7e14;
+  --sidebar: #212529;
   --sidebar-foreground: #ffffff;
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useTheme } from 'next-themes';
 import React from 'react';
 import { DUMMY_NOTES } from '../data';
 import type { Note } from '../data';
@@ -9,29 +10,38 @@ interface RightSidebarProps {
     onToggleCollapse: () => void;
 }
 
-const NoteCard: React.FC<{ note: Note }> = ({ note }) => (
-    <div className="bg-background/50 border border-background/20 rounded-lg p-3 mb-3 shadow-sm">
-        <div className="flex items-center mb-2">
-            <span 
-                className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
-                    note.author.name === 'Agent' ? 'bg-accent text-white' : 'bg-primary text-white'
-                }`}
-            >
-                {note.author.name[0]}
-            </span>
-            <span className="font-bold text-xs ml-2 text-sidebar-foreground">{note.author.name}</span>
-            <span className="text-xs text-secondary ml-auto">{note.timestamp.toLocaleTimeString()}</span>
+const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
+    const [formattedTime, setFormattedTime] = React.useState('');
+
+    React.useEffect(() => {
+        setFormattedTime(note.timestamp.toLocaleTimeString());
+    }, [note.timestamp]);
+
+    return (
+        <div className="bg-background/50 border border-background/20 rounded-lg p-3 mb-3 shadow-sm">
+            <div className="flex items-center mb-2">
+                <span 
+                    className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
+                        note.author.name === 'Agent' ? 'bg-accent text-white' : 'bg-primary text-white'
+                    }`}
+                >
+                    {note.author.name[0]}
+                </span>
+                <span className="font-bold text-xs ml-2 text-sidebar-foreground">{note.author.name}</span>
+                <span className="text-xs text-secondary ml-auto">{formattedTime}</span>
+            </div>
+            <textarea 
+                readOnly 
+                className="w-full text-sm resize-none bg-transparent focus:outline-none text-sidebar-foreground" 
+                rows={2}
+                value={note.content}
+            />
         </div>
-        <textarea 
-            readOnly 
-            className="w-full text-sm resize-none bg-transparent focus:outline-none text-sidebar-foreground" 
-            rows={2}
-            value={note.content}
-        />
-    </div>
 );
+};
 
 const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollapse }) => {
+    const { theme, setTheme } = useTheme();
     return (
         <aside 
             className={`bg-sidebar text-sidebar-foreground flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-xl 
@@ -53,6 +63,12 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
             ) : (
                 <div className="flex flex-col flex-grow w-full overflow-y-auto">
                     <div className="flex items-center justify-between">
+                        <button 
+                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                                className="w-full text-left p-2 rounded text-white bg-primary hover:bg-primary/80 transition-colors"
+                            >
+                                {theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                            </button>
                         <h2 className="text-xl font-semibold text-sidebar-foreground border-b border-background/20 pb-2 mb-4">Trip Assets</h2>
                         <button 
                             className="text-sidebar-foreground hover:text-primary transition-colors"

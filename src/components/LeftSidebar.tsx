@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { DUMMY_TRIPS } from '../data';
 import type { Trip } from '../data';
-import { useTheme } from './ThemeProvider';
+import { useTheme } from 'next-themes';
 
 interface LeftSidebarProps {
     isCollapsed: boolean;
@@ -37,7 +37,8 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => (
 );
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse }) => {
-    const { theme, toggleTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
+    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
