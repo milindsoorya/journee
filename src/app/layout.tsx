@@ -1,5 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import { ThemeProvider } from '../components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: 'Journée Trip Planner',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="h-screen overflow-hidden antialiased bg-bg-light">{children}</body>
+      <ThemeProvider>
+        <body className="h-screen overflow-hidden antialiased bg-bg-light">{children}</body>
+      </ThemeProvider>
     </html>
   );
 }

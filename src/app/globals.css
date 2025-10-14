@@ -7,25 +7,23 @@ html, body {
 }
 
 :root {
-  /* Spacing Variables (Used in components and config) */
+  --primary-blue: #3498db;
+  --secondary-dark: #2c3e50;
+  --accent-teal: #1abc9c;
+  --draft-gray: #bdc3c7;
+  --warning-orange: #f39c12;
+  --bg-light: #f4f7f9;
   --sidebar-w: 250px;
   --sidebar-w-collapsed: 50px;
   --right-sidebar-w: 300px;
   --right-sidebar-w-collapsed: 50px;
-
-  /* Custom Colors defined as CSS Variables (Used in custom classes) */
-  --accent-teal: #1abc9c;
-  --draft-gray: #bdc3c7;
 }
 
-/* Custom utility classes referencing the CSS Variables */
-.dot-final {
-  background-color: var(--accent-teal);
-}
-.dot-draft {
-  background-color: var(--draft-gray);
-}
-
-.bg-secondary-dark {
-  background-color: #2c3e50 !important;
+.dark {
+  --primary-blue: #2980b9;
+  --secondary-dark: #2c3e50;
+  --accent-teal: #16a085;
+  --draft-gray: #95a5a6;
+  --warning-orange: #d35400;
+  --bg-light: #34495e;
 }

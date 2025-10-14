@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { DUMMY_TRIPS } from '../data';
 import type { Trip } from '../data';
+import { useTheme } from './ThemeProvider';
 
 interface LeftSidebarProps {
     isCollapsed: boolean;
@@ -10,13 +11,12 @@ interface LeftSidebarProps {
 }
 
 const UserMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => (
-    // User Menu Overlay (Visible when open)
     <div className="absolute inset-0 bg-secondary-dark p-5 z-40 flex flex-col transition-transform duration-300 transform translate-x-0">
         <button 
             className="text-white text-lg font-semibold mb-6 self-start hover:text-primary-blue" 
             onClick={onClose}
         >
-            &#x276E; Back {/* <-- Close Indicator */}
+            &#x276E; Back
         </button>
         <div className="mb-8">
             <span className="text-draft-gray text-sm">milindsoorya@gmail.com</span>
@@ -37,16 +37,14 @@ const TripItem: React.FC<{ trip: Trip }> = ({ trip }) => (
 );
 
 const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse }) => {
+    const { theme, toggleTheme } = useTheme();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    // Dynamic width class based on desktop collapse state (using CSS variables for transition)
-    const widthClass = isCollapsed ? 'w-[var(--sidebar-w-collapsed)] p-2' : 'w-[var(--sidebar-w)] p-5';
-    
 
     return (
         <aside 
-            className={`bg-secondary-dark text-white flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-xl 
-                ${widthClass}`}
+            className={`text-white flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-xl 
+                ${isCollapsed ? 'w-[var(--sidebar-w-collapsed)] p-2' : 'w-[var(--sidebar-w)] p-5'}`}
+            style={{ backgroundColor: 'var(--secondary-dark)' }}
         >
             {isCollapsed ? (
                 <div>
@@ -80,7 +78,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
                         + New Trip
                     </button>
                     
-                    {/* Trip List */}
                     <nav className="flex-grow overflow-y-auto">
                         <h3 className="text-sm mb-4 opacity-80">Trips & Ideas</h3>
                         {DUMMY_TRIPS.map(trip => (
@@ -95,7 +92,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
                                                 className={`flex justify-between items-center p-1 rounded text-xs transition-colors ${version.status === 'final' ? 'bg-accent-teal font-bold' : 'hover:bg-[#34495e]'}`}
                                             >
                                                 <span className='truncate'>{version.name}</span>
-                                                {/* Status Dot */}
                                                 <span className={`w-2 h-2 rounded-full flex-shrink-0 ${version.status === 'final' ? 'dot-final' : 'dot-draft'}`}></span>
                                             </a>
                                         ))}
@@ -105,7 +101,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
                         ))}
                     </nav>
 
-                    {/* User Profile Footer */}
                     <div className="mt-auto border-t border-[#4a5d70] pt-2 flex-shrink-0">
                         <div 
                             className="flex items-center cursor-pointer p-1 hover:bg-[#34495e] rounded transition-colors"
@@ -116,10 +111,17 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
                             <span className="bg-red-500 text-white text-xs px-1 rounded-full flex-shrink-0">Upgrade</span>
                         </div>
                     </div>
+
+                    <div className="mt-4">
+                        <button 
+                            className="flex items-center justify-center w-full p-2 rounded hover:bg-[#34495e] transition-colors"
+                            onClick={toggleTheme}
+                        >
+                            {theme === 'light' ? '🌞' : '🌜'}
+                        </button>
+                    </div>
                 </div>
             )}
-
-            {/* User Menu Overlay */}
             {isMenuOpen && <UserMenu onClose={() => setIsMenuOpen(false)} />}
         </aside>
     );
