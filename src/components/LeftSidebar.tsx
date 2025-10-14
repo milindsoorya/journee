@@ -25,7 +25,7 @@ const UserMenu: React.FC<{ onClose: () => void }> = ({ onClose }) => (
             <a href="#" className="text-sidebar-foreground p-2 hover:bg-background/10 rounded">⭐ Upgrade Plan</a>
             <a href="#" className="text-sidebar-foreground p-2 hover:bg-background/10 rounded">⚙️ Settings</a>
             <a href="#" className="text-sidebar-foreground p-2 hover:bg-background/10 rounded">❓ Help</a>
-            <a href="#" className="text-red-400 p-2 hover:bg-background/10 rounded">➡️ Log out</a>
+            <a href="#" className="text-warning p-2 hover:bg-background/10 rounded">➡️ Log out</a>
         </nav>
     </div>
 );
@@ -108,7 +108,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({ isCollapsed, onToggleCollapse
                         >
                             <span className="w-8 h-8 rounded-full bg-accent flex items-center justify-center font-bold text-sm flex-shrink-0">M</span>
                             <span className="ml-2 truncate text-sm flex-grow">Milind Soorya</span>
-                            <span className="bg-red-500 text-white text-xs px-1 rounded-full flex-shrink-0">Upgrade</span>
+                            <span className="bg-warning text-warning-foreground text-xs px-1 rounded-full flex-shrink-0">Upgrade</span>
                         </div>
                     </div>
 

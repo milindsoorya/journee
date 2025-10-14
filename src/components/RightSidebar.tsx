@@ -22,7 +22,7 @@ const NoteCard: React.FC<{ note: Note }> = ({ note }) => {
             <div className="flex items-center mb-2">
                 <span 
                     className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
-                        note.author.name === 'Agent' ? 'bg-accent text-white' : 'bg-primary text-white'
+                        note.author.name === 'Agent' ? 'bg-accent text-primary-foreground' : 'bg-primary text-primary-foreground'
                     }`}
                 >
                     {note.author.name[0]}
@@ -85,9 +85,9 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
                     {/* Export Section */}
                     <div className="border-t border-background/20 pt-4 mt-4 flex-shrink-0">
                         <h3 className="font-bold text-sidebar-foreground mb-3">📤 Export & Share</h3>
-                        <button className="w-full text-left p-2 rounded text-white bg-warning hover:bg-yellow-600 transition-colors mb-2">⬇️ Download Complete Trip JSON</button>
-                        <button className="w-full text-left p-2 rounded text-gray-700 bg-white border border-gray-300 hover:bg-gray-100 transition-colors mb-2">🔗 Google Maps Route Link</button>
-                        <button className="w-full text-left p-2 rounded text-white bg-accent hover:bg-teal-600 transition-colors">🌐 Sharable Website Link</button>
+                        <button className="w-full text-left p-2 rounded text-white bg-warning hover:bg-opacity-80 transition-colors mb-2">⬇️ Download Complete Trip JSON</button>
+                        <button className="w-full text-left p-2 rounded text-foreground bg-background border border-secondary hover:bg-opacity-80 transition-colors mb-2">🔗 Google Maps Route Link</button>
+                        <button className="w-full text-left p-2 rounded text-white bg-accent hover:bg-opacity-80 transition-colors">🌐 Sharable Website Link</button>
                     </div>
 
                     {/* Notes Section */}
@@ -98,7 +98,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({ isCollapsed, onToggleCollap
                         ))}
                         <textarea 
                             placeholder="Add a new note or finding..." 
-                            className="w-full p-2 border border-gray-300 rounded-lg text-sm focus:ring-primary focus:border-primary"
+                            className="w-full p-2 border border-secondary rounded-lg text-sm focus:ring-primary focus:border-primary bg-background text-foreground"
                         />
                     </div>
                 </div>
