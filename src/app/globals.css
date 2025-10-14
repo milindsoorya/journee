@@ -1,5 +1,6 @@
-/* CORRECTED STYLING METHOD: Uses @import and CSS variables */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Ensure body and html tags have full height for the layout to work */
 html, body {
