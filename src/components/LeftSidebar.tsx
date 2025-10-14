@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ChevronRight, X, PanelLeft, Menu } from "lucide-react";
-import CollapsedView from "./CollapsedView";
+import { X, PanelLeft, Menu } from "lucide-react";
 import DefaultView from "./DefaultView";
 import UserProfile from "./UserProfile";
 import ThemeToggler from "./ThemeToggler";
@@ -55,9 +54,13 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
         {/* Content */}
         {!isCollapsed && (
           <div className="flex flex-col flex-grow w-full h-full overflow-y-auto">
-            {/* Header with Close Button */}
+            {/* Header with ThemeToggler, Title, and Close Button */}
             <div className="flex items-center justify-between h-12 mb-6 border-b border-border pb-4">
-              <div className="flex items-center">
+              <div className="flex items-center gap-3">
+                {/* Theme Toggler - Same level as title */}
+                <ThemeToggler />
+                
+                {/* Title */}
                 <h2 className="text-xl font-semibold text-sidebar-foreground">
                   Journée
                 </h2>
@@ -96,11 +99,6 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
                 <UserProfile onClose={() => setIsMenuOpen(false)} />
               </div>
             )}
-
-            {/* Theme Toggler - Bottom Fixed */}
-            <div className="mt-auto pt-6 border-t border-border">
-              <ThemeToggler />
-            </div>
           </div>
         )}
       </aside>

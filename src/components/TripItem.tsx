@@ -1,16 +1,34 @@
 "use client";
 import React from "react";
 import type { Trip } from "../data";
+
 interface TripItemProps {
   trip: Trip;
+  compact?: boolean; // Add compact prop
 }
-const TripItem: React.FC<TripItemProps> = ({ trip }) => (
+
+const TripItem: React.FC<TripItemProps> = ({ 
+  trip, 
+  compact = false // Default to false
+}) => (
   <div
-    className={`text-sidebar-foreground text-sm ${
-      trip.isFolder ? "font-bold" : ""
-    } p-2 rounded hover:bg-background/10 transition-colors flex justify-between items-center`}
+    className={`text-sidebar-foreground flex items-center gap-2 transition-colors ${
+      trip.isFolder ? "font-semibold" : "font-normal"
+    } ${
+      compact 
+        ? "text-xs py-1 px-0" // Compact styling
+        : "text-sm py-2 px-2" // Regular styling
+    } hover:bg-accent/20 rounded ${
+      compact ? "" : "hover:rounded"
+    }`}
   >
-    {trip.icon} {trip.title}
+    <span className="flex-shrink-0 w-4 h-4">
+      {trip.icon}
+    </span>
+    <span className="truncate flex-1">
+      {trip.title}
+    </span>
   </div>
 );
+
 export default TripItem;
