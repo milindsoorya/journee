@@ -12,7 +12,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
   }, [note.timestamp]);
 
   return (
-    <div className="bg-background/50 border border-background/20 rounded-lg p-3 mb-3 shadow-sm">
+    <div className="bg-background/50 border border-slate-200 rounded-lg p-3 mb-3 shadow-sm">
       <div className="flex items-center mb-2">
         <span
           className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
@@ -26,7 +26,7 @@ const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
         <span className="font-bold text-xs ml-2 text-sidebar-foreground">
           {note.author.name}
         </span>
-        <span className="text-xs text-secondary ml-auto">{formattedTime}</span>
+        <span className="text-xs text-slate-500 ml-auto">{formattedTime}</span>
       </div>
       <textarea
         readOnly

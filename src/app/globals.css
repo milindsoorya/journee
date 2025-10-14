@@ -8,16 +8,16 @@ html, body {
 }
 
 :root {
-  --background: #f8f9fa;
-  --foreground: #212529;
+  --background: #f8fafc; /* Softer white */
+  --foreground: #0f172a;
   --card: #ffffff;
-  --primary: #007bff;
+  --primary: #2563eb;
   --primary-foreground: #ffffff;
-  --secondary: #6c757d;
-  --accent: #17a2b8;
-  --warning: #ffc107;
-  --sidebar: #343a40;
-  --sidebar-foreground: #ffffff;
+  --secondary: #94a3b8; /* Lighter secondary text */
+  --accent: #059669;
+  --warning: #f59e0b;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f1f5f9;
   
   --sidebar-w: 250px;
   --sidebar-w-collapsed: 50px;
@@ -26,14 +26,14 @@ html, body {
 }
 
 .dark {
-  --background: #121212;
-  --foreground: #e9ecef;
-  --card: #1e1e1e;
-  --primary: #0d6efd;
+  --background: #0f172a; /* Softer black */
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --primary: #3b82f6; /* Brighter blue for dark mode */
   --primary-foreground: #ffffff;
-  --secondary: #adb5bd;
-  --accent: #0dcaf0;
-  --warning: #fd7e14;
-  --sidebar: #212529;
-  --sidebar-foreground: #ffffff;
+  --secondary: #94a3b8; /* Lighter secondary text */
+  --accent: #10b981;
+  --warning: #f59e0b;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f1f5f9;
 }

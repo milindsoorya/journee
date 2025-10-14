@@ -13,7 +13,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
 }) => {
   return (
     <aside
-      className={`bg-sidebar text-sidebar-foreground flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-xl
+      className={`bg-sidebar text-sidebar-foreground flex-shrink-0 flex flex-col relative transition-all duration-300 shadow-lg border-l border-secondary
     ${
       isCollapsed
         ? "w-[var(--sidebar-w-collapsed)] p-2"

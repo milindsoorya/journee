@@ -1,8 +1,13 @@
 import './globals.css';
-import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import { ClientThemeProvider } from '../components/ClientThemeProvider';
 
-export const metadata: Metadata = {
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+export const metadata = {
   title: 'Journée Trip Planner',
   description: 'AI-assisted trip planning prototype.',
 };
@@ -13,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.variable}>
       <head>
         <script async src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
       </head>

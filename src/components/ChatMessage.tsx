@@ -8,10 +8,10 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const isUser = message.author.name !== "Agent";
   return (
     <div
-      className={`max-w-[75%] p-3 rounded-2xl ${
+      className={`max-w-[75%] p-3 rounded-2xl shadow-md ${
         isUser
-          ? "bg-primary text-primary-foreground self-end rounded-br-lg"
-          : "bg-secondary text-foreground self-start rounded-bl-lg"
+          ? "bg-blue-500 text-white self-end rounded-br-lg"
+          : "bg-gray-200 text-gray-800 self-start rounded-bl-lg"
       }`}
     >
       {message.message}
