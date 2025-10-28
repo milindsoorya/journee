@@ -1,0 +1,68 @@
+// Prisma schema for the Journée Trip Planner
+// Uses SQLite for local development. Update the datasource url if you swap databases.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum TripVersionStatus {
+  final
+  draft
+}
+
+model User {
+  id         String        @id @default(cuid())
+  name       String
+  email      String        @unique
+  avatarUrl  String?
+  trips      Trip[]
+  notes      Note[]
+  messages   ChatMessage[]
+}
+
+model Trip {
+  id        String         @id @default(cuid())
+  title     String
+  icon      String         @default("🧳")
+  isFolder  Boolean        @default(false)
+  createdAt DateTime       @default(now())
+  ownerId   String
+  owner     User           @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  versions  TripVersion[]
+  messages  ChatMessage[]
+}
+
+model TripVersion {
+  id        String            @id @default(cuid())
+  name      String
+  status    TripVersionStatus @default(draft)
+  createdAt DateTime          @default(now())
+  tripId    String
+  trip      Trip              @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  notes     Note[]
+}
+
+model Note {
+  id            String      @id @default(cuid())
+  content       String
+  timestamp     DateTime    @default(now())
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  tripVersionId String?
+  tripVersion   TripVersion? @relation(fields: [tripVersionId], references: [id], onDelete: Cascade)
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  message   String
+  timestamp DateTime @default(now())
+  authorId  String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  tripId    String?
+  trip      Trip?    @relation(fields: [tripId], references: [id], onDelete: Cascade)
+}
