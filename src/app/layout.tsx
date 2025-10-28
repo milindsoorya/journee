@@ -17,17 +17,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const mapsKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <script 
-          async 
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&callback=initMap`}>
-        </script>
+        {mapsKey && (
+          <script
+            async
+            src={`https://maps.googleapis.com/maps/api/js?key=${mapsKey}`}
+          />
+        )}
       </head>
       <body className="h-screen overflow-hidden antialiased bg-background text-foreground">
-          <ClientThemeProvider>{children}</ClientThemeProvider>
-        </body>
+        <ClientThemeProvider>{children}</ClientThemeProvider>
+      </body>
     </html>
   );
 }

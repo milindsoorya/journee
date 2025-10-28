@@ -43,10 +43,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
           {isProfileOpen ? (
             <UserProfile onClose={() => setIsProfileOpen(false)} />
           ) : (
-            <DefaultView
-              onToggleCollapse={onToggleCollapse}
-              onProfileToggle={() => setIsProfileOpen(true)}
-            />
+            <DefaultView onProfileToggle={() => setIsProfileOpen(true)} />
           )}
         </div>
       </div>
@@ -89,10 +86,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
         {isProfileOpen ? (
           <UserProfile onClose={() => setIsProfileOpen(false)} />
         ) : (
-          <DefaultView
-            onToggleCollapse={onToggleCollapse}
-            onProfileToggle={() => setIsProfileOpen(true)}
-          />
+          <DefaultView onProfileToggle={() => setIsProfileOpen(true)} />
         )}
       </div>
     </aside>

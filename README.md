@@ -1,37 +1,72 @@
 # Journée Trip Planner
 
-This is a Next.js-based trip planning application with a focus on a clean, responsive, and user-friendly interface. The application features a three-panel layout with collapsible sidebars, a central content area, and a modern, intuitive design.
+A modern trip planning workspace built with Next.js, Tailwind CSS, and Prisma. The interface features collapsible sidebars, a responsive center workspace, and live data sourced from a PostgreSQL database (compatible with Prisma Accelerate).
 
 ## Features
 
--   **Responsive Layout:** The application is designed to work seamlessly on laptop screens, with a flexible grid system that adapts to different screen sizes.
--   **Collapsible Sidebars:** The left and right sidebars can be collapsed to maximize the main content area, providing a more focused user experience.
--   **Modern UI/UX:** The application incorporates modern UI/UX principles, including intuitive icons, clear visual cues, and a consistent design language.
--   **Component-Based Architecture:** The application is built using a component-based architecture, which makes it easy to maintain and extend.
+- **Responsive Layout:** Optimised for desktop and tablet breakpoints with mobile-specific controls and gestures.
+- **Collapsible Sidebars:** Hide navigation panels on smaller screens to focus on itinerary, map, or chat content.
+- **Live Data:** Trips, chat history, and notes are backed by a Prisma-managed PostgreSQL database with a reusable SWR data hook.
+- **Component-Based Architecture:** Reusable UI primitives keep the codebase approachable and easy to extend.
 
-## Getting Started
+## Prerequisites
 
-First, run the development server:
+- Node.js 18+
+- npm 9+
+
+## Environment Variables
+
+Create a `.env` file using the template below:
+
+```bash
+cp .env.example .env
+```
+
+Update the values as needed:
+
+- `DATABASE_URL` – Prisma Accelerate/Data Proxy URL (`prisma+postgres://...`)
+- `DIRECT_DATABASE_URL` – direct Postgres connection string used by Prisma CLI commands
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` – optional browser key if you want to enable the Maps script
+
+## Database Setup
+
+1. Install dependencies and generate the Prisma client:
+   ```bash
+   npm install
+   npm run db:push
+   ```
+2. Seed the database with the sample data used in the UI:
+   ```bash
+   npm run db:seed
+   ```
+
+`npm run db:push` uses `DIRECT_DATABASE_URL` under the hood, so make sure it points at a writable Postgres instance. The app itself reads and writes through Prisma Accelerate using `DATABASE_URL`. If you are not using Accelerate you can set both variables to the same standard Postgres connection string.
+
+## Development
+
+Run the development server with hot reloading:
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit [http://localhost:3000](http://localhost:3000) to explore the app. Edit files under `src/` and the page refreshes automatically.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
+
+- `npm run dev` – start the dev server with Turbopack
+- `npm run build` – create an optimised production build
+- `npm run start` – run the production server
+- `npm run lint` – lint the project
+- `npm run db:push` – sync the Prisma schema to the database
+- `npm run db:seed` – seed the database with starter content
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Deploy easily on [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme). Refer to the [Next.js deployment guide](https://nextjs.org/docs/app/building-your-application/deploying) for additional options.
