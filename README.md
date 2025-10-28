@@ -1,12 +1,12 @@
 # Journée Trip Planner
 
-A modern trip planning workspace built with Next.js, Tailwind CSS, and Prisma. The interface features collapsible sidebars, a responsive center workspace, and live data sourced from a local SQLite database.
+A modern trip planning workspace built with Next.js, Tailwind CSS, and Prisma. The interface features collapsible sidebars, a responsive center workspace, and live data sourced from a PostgreSQL database (compatible with Prisma Accelerate).
 
 ## Features
 
 - **Responsive Layout:** Optimised for desktop and tablet breakpoints with mobile-specific controls and gestures.
 - **Collapsible Sidebars:** Hide navigation panels on smaller screens to focus on itinerary, map, or chat content.
-- **Live Data:** Trips, chat history, and notes are backed by a Prisma-managed SQLite database with a reusable SWR data hook.
+- **Live Data:** Trips, chat history, and notes are backed by a Prisma-managed PostgreSQL database with a reusable SWR data hook.
 - **Component-Based Architecture:** Reusable UI primitives keep the codebase approachable and easy to extend.
 
 ## Prerequisites
@@ -24,7 +24,8 @@ cp .env.example .env
 
 Update the values as needed:
 
-- `DATABASE_URL` – connection string for Prisma (defaults to a local SQLite file)
+- `DATABASE_URL` – Prisma Accelerate/Data Proxy URL (`prisma+postgres://...`)
+- `DIRECT_DATABASE_URL` – direct Postgres connection string used by Prisma CLI commands
 - `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` – optional browser key if you want to enable the Maps script
 
 ## Database Setup
@@ -39,7 +40,7 @@ Update the values as needed:
    npm run db:seed
    ```
 
-Both commands use SQLite by default. Swap the `DATABASE_URL` if you want to target a different database.
+`npm run db:push` uses `DIRECT_DATABASE_URL` under the hood, so make sure it points at a writable Postgres instance. The app itself reads and writes through Prisma Accelerate using `DATABASE_URL`. If you are not using Accelerate you can set both variables to the same standard Postgres connection string.
 
 ## Development
 

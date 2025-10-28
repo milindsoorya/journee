@@ -23,7 +23,7 @@ const DefaultView: React.FC<DefaultViewProps> = ({
   const { data, isLoading, error } = useDashboardData();
 
   const toggleTrip = (tripId: string) => {
-    setExpandedTrips(prev => ({
+    setExpandedTrips((prev) => ({
       ...prev,
       [tripId]: !prev[tripId],
     }));

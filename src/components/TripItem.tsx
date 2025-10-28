@@ -7,9 +7,9 @@ interface TripItemProps {
   compact?: boolean; // Add compact prop
 }
 
-const TripItem: React.FC<TripItemProps> = ({ 
-  trip, 
-  compact = false // Default to false
+const TripItem: React.FC<TripItemProps> = ({
+  trip,
+  compact = false, // Default to false
 }) => (
   <div
     className={`text-sidebar-foreground flex items-center gap-2 transition-colors ${

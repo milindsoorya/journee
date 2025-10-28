@@ -1,7 +1,22 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const { PrismaClient, TripVersionStatus } = require('@prisma/client');
 
-const prisma = new PrismaClient();
+const datasourceUrl =
+  process.env.DIRECT_DATABASE_URL ?? process.env.DATABASE_URL;
+
+if (!datasourceUrl) {
+  throw new Error(
+    'Set DATABASE_URL or DIRECT_DATABASE_URL before running the seed script.'
+  );
+}
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: datasourceUrl,
+    },
+  },
+});
 
 async function main() {
   await prisma.note.deleteMany();
