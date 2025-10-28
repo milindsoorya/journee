@@ -1,18 +1,18 @@
-import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import prisma from "@/lib/prisma";
 
 export async function GET() {
   try {
     const [trips, notes, chatMessages] = await Promise.all([
       prisma.trip.findMany({
-        orderBy: { title: 'asc' },
+        orderBy: { title: "asc" },
         include: {
           owner: true,
           versions: {
-            orderBy: { createdAt: 'asc' },
+            orderBy: { createdAt: "asc" },
             include: {
               notes: {
-                orderBy: { timestamp: 'desc' },
+                orderBy: { timestamp: "desc" },
                 include: { author: true },
               },
             },
@@ -20,12 +20,12 @@ export async function GET() {
         },
       }),
       prisma.note.findMany({
-        orderBy: { timestamp: 'desc' },
+        orderBy: { timestamp: "desc" },
         include: { author: true },
         take: 15,
       }),
       prisma.chatMessage.findMany({
-        orderBy: { timestamp: 'asc' },
+        orderBy: { timestamp: "asc" },
         include: { author: true },
       }),
     ]);
@@ -52,7 +52,10 @@ export async function GET() {
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error('[dashboard.get]', error);
-    return NextResponse.json({ error: 'Unable to load dashboard data.' }, { status: 500 });
+    console.error("[dashboard.get]", error);
+    return NextResponse.json(
+      { error: "Unable to load dashboard data." },
+      { status: 500 }
+    );
   }
 }
