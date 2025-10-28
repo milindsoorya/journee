@@ -1,40 +1,37 @@
 "use client";
 import React from "react";
-import { Note } from "../data";
-interface NoteCardProps {
-  note: Note;
-}
-const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
-  const [formattedTime, setFormattedTime] = React.useState("");
+import type { DashboardNote } from "@/types/dashboard";
 
-  React.useEffect(() => {
-    setFormattedTime(note.timestamp.toLocaleTimeString());
-  }, [note.timestamp]);
+interface NoteCardProps {
+  note: DashboardNote;
+}
+
+const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
+  const formattedTime = React.useMemo(
+    () => new Date(note.timestamp).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+    [note.timestamp]
+  );
+
+  const badgeColor = note.author.name === "Agent" ? "bg-accent" : "bg-primary";
 
   return (
-    <div className="bg-background/50 border border-slate-200 rounded-lg p-3 mb-3 shadow-sm">
-      <div className="flex items-center mb-2">
+    <article className="bg-background/60 border border-border rounded-lg p-3 shadow-sm transition-transform duration-200 hover:translate-y-[-1px]">
+      <header className="flex items-center mb-2 gap-2">
         <span
-          className={`w-5 h-5 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
-            note.author.name === "Agent"
-              ? "bg-accent text-primary-foreground"
-              : "bg-primary text-primary-foreground"
-          }`}
+          className={`${badgeColor} text-primary-foreground w-6 h-6 rounded-full flex items-center justify-center font-semibold text-xs flex-shrink-0`}
         >
-          {note.author.name[0]}
+          {note.author.name.slice(0, 2).toUpperCase()}
         </span>
-        <span className="font-bold text-xs ml-2 text-sidebar-foreground">
-          {note.author.name}
-        </span>
-        <span className="text-xs text-slate-500 ml-auto">{formattedTime}</span>
-      </div>
-      <textarea
-        readOnly
-        className="w-full text-sm resize-none bg-transparent focus:outline-none text-sidebar-foreground"
-        rows={2}
-        value={note.content}
-      />
-    </div>
+        <div className="flex flex-col">
+          <span className="font-semibold text-xs text-sidebar-foreground">{note.author.name}</span>
+          <time dateTime={note.timestamp} className="text-[10px] text-muted-foreground uppercase tracking-wide">
+            {formattedTime}
+          </time>
+        </div>
+      </header>
+      <p className="text-sm leading-relaxed text-sidebar-foreground whitespace-pre-wrap">{note.content}</p>
+    </article>
   );
 };
+
 export default NoteCard;

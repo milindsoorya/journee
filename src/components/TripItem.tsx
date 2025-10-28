@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import type { Trip } from "../data";
+import type { DashboardTrip } from "@/types/dashboard";
 
 interface TripItemProps {
-  trip: Trip;
+  trip: DashboardTrip;
   compact?: boolean; // Add compact prop
 }
 
@@ -23,7 +23,7 @@ const TripItem: React.FC<TripItemProps> = ({
     }`}
   >
     <span className="flex-shrink-0 w-4 h-4">
-      {trip.icon}
+      {trip.icon || '🧳'}
     </span>
     <span className="truncate flex-1">
       {trip.title}

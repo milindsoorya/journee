@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { VIEW_OPTIONS, View } from "../types/view";
-import { List, Map, MessageCircle } from "lucide-react";
 
 interface ViewToggleProps {
   currentView: View;
