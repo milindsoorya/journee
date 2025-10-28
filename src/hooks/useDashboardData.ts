@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import useSWR from 'swr';
-import type { DashboardResponse } from '@/types/dashboard';
+import useSWR from "swr";
+import type { DashboardResponse } from "@/types/dashboard";
 
 const fetcher = async (url: string): Promise<DashboardResponse> => {
   const res = await fetch(url);
